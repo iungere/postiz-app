@@ -54,7 +54,7 @@ export class AuthMiddleware implements NestMiddleware {
           delete user.password;
 
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-expect-error
+
           req.user = user;
 
           // @ts-ignore
@@ -63,7 +63,7 @@ export class AuthMiddleware implements NestMiddleware {
               (f) => f.userId === user.id
             );
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-expect-error
+
           req.org = loadImpersonate.organization;
           next();
           return;
@@ -82,11 +82,11 @@ export class AuthMiddleware implements NestMiddleware {
       }
 
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
+
       req.user = user;
 
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
+
       req.org = setOrg;
     } catch (err) {
       throw new HttpForbiddenException();

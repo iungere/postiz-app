@@ -20,7 +20,7 @@ export class ExtractContentService {
 
     // only element that has a title
     const allTitles = Array.from(dom.window.document.querySelectorAll('*'))
-      .filter((f) => {
+      .filter((f: any) => {
         return (
           f.querySelector('h1') ||
           f.querySelector('h2') ||
@@ -30,7 +30,7 @@ export class ExtractContentService {
           f.querySelector('h6')
         );
       })
-      .reverse();
+      .reverse() as Element[];
 
     const findTheOneWithMostTitles = allTitles.reduce(
       (all, current) => {
@@ -58,7 +58,9 @@ export class ExtractContentService {
       { total: 0, depth: 0, element: null as Element | null }
     );
 
-    return findTheOneWithMostTitles?.element?.textContent?.replace(/\n/g, ' ').replace(/ {2,}/g, ' ');
+    return findTheOneWithMostTitles?.element?.textContent
+      ?.replace(/\n/g, ' ')
+      .replace(/ {2,}/g, ' ');
     //
     // const allElements = Array.from(
     //   dom.window.document.querySelectorAll('*')
