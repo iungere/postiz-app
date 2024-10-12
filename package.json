@@ -12,6 +12,7 @@
     "build:frontend": "pnpm dlx nx run frontend:build:production",
     "dev:frontend": "pnpm dlx nx run frontend:serve:development",
     "dev:backend": "pnpm dlx nx run backend:serve:development",
+    "update-plugins": "node build.plugins.js",
     "dev:workers": "pnpm dlx nx run workers:serve:development",
     "dev:cron": "pnpm dlx nx run cron:serve:development",
     "dev:docker": "docker compose -f ./docker-compose.dev.yaml up -d",
@@ -27,7 +28,7 @@
     "prisma-reset": "cd ./libraries/nestjs-libraries/src/database/prisma && pnpm dlx prisma db push --force-reset && pnpm dlx prisma db push",
     "docker-build": "./var/docker/docker-build.sh",
     "docker-create": "./var/docker/docker-create.sh",
-    "postinstall": "npm run prisma-generate"
+    "postinstall": "npm run update-plugins && npm run prisma-generate"
   },
   "private": true,
   "dependencies": {
